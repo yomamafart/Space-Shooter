@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxgcxqw1xsd6t"]
+
+[ext_resource type="PackedScene" uid="uid://b7ptsrqsgh1v6" path="res://Player/player.tscn" id="1_g4gy7"]
+[ext_resource type="Script" path="res://Player/Bullet.gd" id="3_2sj6h"]
+[ext_resource type="Texture2D" uid="uid://cbtpjaki3fi3c" path="res://Assets/Bullet.png" id="4_f04v8"]
+[ext_resource type="PackedScene" uid="uid://dibx0yahp2w20" path="res://Asteroid/asteroid.tscn" id="4_rbci8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hjx5e"]
+radius = 12.0
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_g4gy7")]
+
+[node name="Bullet" type="Area2D" parent="."]
+script = ExtResource("3_2sj6h")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bullet"]
+texture = ExtResource("4_f04v8")
+
+[node name="Timer" type="Timer" parent="Bullet"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet"]
+shape = SubResource("CircleShape2D_hjx5e")
+
+[node name="Asteroid_Container" type="Node2D" parent="."]
+
+[node name="Asteroid" parent="Asteroid_Container" instance=ExtResource("4_rbci8")]
+
+[node name="Asteroid2" parent="Asteroid_Container" instance=ExtResource("4_rbci8")]
+position = Vector2(900, 600)
+
+[node name="Effects" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="Bullet" to="Bullet" method="_on_body_entered"]
