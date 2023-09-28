@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://brhb3y1sccqae"]
+[gd_scene load_steps=10 format=3 uid="uid://brhb3y1sccqae"]
 
 [ext_resource type="PackedScene" uid="uid://b7ptsrqsgh1v6" path="res://Player/player.tscn" id="1_w2t7x"]
 [ext_resource type="Script" path="res://Player/Player_Container.gd" id="2_sct01"]
@@ -7,8 +7,15 @@
 [ext_resource type="FontFile" uid="uid://cfkna6tsnl6ab" path="res://Assets/GnarlySkeletonBlack_PERSONAL_USE_ONLY.otf" id="5_0dgcc"]
 [ext_resource type="Script" path="res://UI/HUD.gd" id="5_qbo1t"]
 [ext_resource type="Script" path="res://UI/Menu.gd" id="6_tjmee"]
+[ext_resource type="Texture2D" uid="uid://y41wlqrdyvnh" path="res://Assets/unnamed.jpg" id="8_1c1oa"]
+[ext_resource type="AudioStream" uid="uid://dfc85etc15kso" path="res://Assets/monkeys-spinning-monkeys-by-kevin-macleod-from-filmmusic-io.mp3" id="9_m4q8m"]
 
 [node name="Game" type="Node2D"]
+
+[node name="Unnamed" type="Sprite2D" parent="."]
+position = Vector2(577, 267)
+scale = Vector2(0.496546, 0.252591)
+texture = ExtResource("8_1c1oa")
 
 [node name="Asteroid_Container" type="Node2D" parent="."]
 
@@ -142,6 +149,10 @@ theme_override_fonts/font = ExtResource("5_0dgcc")
 theme_override_font_sizes/font_size = 20
 text = "Quit
 "
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_m4q8m")
+autoplay = true
 
 [connection signal="timeout" from="UI/HUD/Timer" to="UI/HUD" method="_on_timer_timeout"]
 [connection signal="pressed" from="UI/Menu/Restart" to="UI/Menu" method="_on_restart_pressed"]
